@@ -1,4 +1,5 @@
 import type { Book } from "~/types/Book";
+import { useFilteredBookList } from "./states";
 
 export const useGetBookList = async () => {
   const runtimeConfig = useRuntimeConfig();
@@ -10,4 +11,5 @@ export const useGetBookList = async () => {
   }
 
   useBookList().value = data.value;
+  useFilteredBookList().value = data.value;
 };

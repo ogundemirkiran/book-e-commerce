@@ -2,10 +2,11 @@
   <div class="min-h-screen flex flex-col">
     <header class="sticky top-0 z-50 bg-white text-black py-4 px-6">
       <div class="container mx-auto flex justify-between items-center">
-        <nuxt-link to="/"
-          ><h1 class="text-2xl font-bold">Book E-Commerce</h1></nuxt-link
+        <nuxt-link to="/">
+          <h1 class="text-2xl font-bold">Book E-Commerce</h1></nuxt-link
         >
 
+        <SearchInput />
         <nav>
           <ul class="flex space-x-4">
             <li>
