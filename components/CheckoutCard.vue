@@ -10,7 +10,7 @@
           >Total Number of Books:</span
         >
         <span class="font-semibold text-gray-900 text-sm sm:text-md">
-          {{ totalQuantity.value }}
+          {{ totalQuantity }}
         </span>
       </div>
       <div class="flex justify-between">

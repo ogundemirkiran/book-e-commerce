@@ -13,12 +13,19 @@
 </template>
 ;
 
-<script lang="js" setup>
+<script lang="ts" setup>
 useHead({
-  title: 'booksTitle',
-  ogTitle: 'ogBooksTitle',
-  description: 'descriptionBooks',
-  ogDescription: 'ogDescriptionBooks'
+  title: 'All Book List',
+  meta: [
+    {
+      name: 'description',
+      content: 'All books are listed here'
+    },
+    {
+      name: 'keywords',
+      content: 'book list, list books, books, list'
+    }
+  ]
 });
 
 await useGetBookList();

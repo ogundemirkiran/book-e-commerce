@@ -59,6 +59,20 @@
 </template>
 
 <script lang="ts" setup>
+useHead({
+  title: 'Book Details',
+  meta: [
+    {
+      name: 'description',
+      content: 'All book details info here'
+    },
+    {
+      name: 'keywords',
+      content: 'book detail, detail books, detail, book info'
+    }
+  ]
+});
+
 import type { Book } from '~/types/Book';
 const route = useRoute();
 const id = Number(route.params._id);

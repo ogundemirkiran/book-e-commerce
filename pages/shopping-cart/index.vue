@@ -35,6 +35,20 @@
 ;
 
 <script lang="ts" setup>
+useHead({
+  title: 'Book Shopping',
+  meta: [
+    {
+      name: 'description',
+      content: 'All book shopping list here'
+    },
+    {
+      name: 'keywords',
+      content: 'book shopping cart, shopping, shopping cart, book cart'
+    }
+  ]
+});
+
 const loading = ref<boolean>(true);
 
 const shoppingCartList = useShoppingCartList();
