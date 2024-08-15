@@ -1,0 +1,15 @@
+  <svg
+      aria-hidden="true"
+      class="w-8 h-8 text-gray-900"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M3 3h2l3 9h10l3-9h2m-2 0h-2m-6 9a2 2 0 100 4 2 2 0 000-4zm8 0a2 2 0 100 4 2 2 0 000-4z"
+      />
+    </svg>

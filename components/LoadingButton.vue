@@ -16,8 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
-
 interface Props {
   isLoading: boolean;
   buttonClass: string;

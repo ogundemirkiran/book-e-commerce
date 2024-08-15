@@ -2,6 +2,7 @@
   <div
     class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow"
   >
+    <!-- NOT: İmage -->
     <nuxt-link :to="`/books/${book.id}`" class="cursor-pointer">
       <img
         class="p-5 rounded-t-lg h-[400px] m-auto"
@@ -9,6 +10,8 @@
         :alt="book.title"
       />
     </nuxt-link>
+
+    <!-- NOT: Details -->
     <div class="px-4 pb-2">
       <div>
         <h5 class="text-xl font-semibold tracking-tight text-gray-900">
@@ -23,6 +26,8 @@
           </span>
         </div>
       </div>
+
+      <!-- NOT: Actions -->
       <div class="flex items-center justify-end mt-3">
         <LoadingButton
           :isLoading="isAddingToBasket"
@@ -44,20 +49,17 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref } from "vue";
-import type { Book } from "@/types/Book";
-import { useRouter } from "nuxt/app";
-
-const router = useRouter();
+import type { Book } from '@/types/Book';
 
 const props = defineProps<{
   book: Book;
 }>();
+
 const isAddingToBasket = ref(false);
 const isRemovingFromBasket = ref(false);
 
 const addToBasket = (e: any) => {
-  useShoppingCart("add", props.book);
+  useShoppingCart('add', props.book);
 
   setTimeout(() => {
     isAddingToBasket.value = false;
@@ -65,7 +67,7 @@ const addToBasket = (e: any) => {
 };
 
 const removeFromBasket = () => {
-  useShoppingCart("remove", props.book);
+  useShoppingCart('remove', props.book);
 
   setTimeout(() => {
     isRemovingFromBasket.value = false;

@@ -2,23 +2,27 @@
   <div v-if="!detailBook"><LoadingSpinner /></div>
   <div v-else>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
+      <!-- NOT: İmage -->
       <div>
         <img
-          class="rounded-t-lg m-auto h-[600px]"
+          class="rounded-t-lg m-auto h-[400] sm:h-[600px]"
           :src="detailBook?.coverImageUrl"
           :alt="detailBook?.title"
         />
       </div>
 
+      <!-- NOT: Detail -->
       <div>
         <div class="p-5">
-          <h1 class="mb-3 text-4xl font-bold tracking-tight text-gray-900">
+          <h1
+            class="mb-3 text-xl sm:text-4xl font-bold tracking-tight text-gray-900"
+          >
             {{ detailBook?.title }}
           </h1>
-          <h2 class="mb-3 text-2xl font-normal text-gray-700">
+          <h2 class="mb-3 text-lg sm:text-2xl font-normal text-gray-700">
             {{ detailBook?.author }}
           </h2>
-          <p class="mb-3">
+          <p class="mb-3 text-sm lg:text-lg">
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
             ever since the 1500s, when an unknown printer took a galley of type
@@ -29,7 +33,7 @@
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
           </p>
-          <h2 class="mb-5 text-4xl font-bold text-black text-end">
+          <h2 class="mb-5 text-xl lg:text-4xl font-bold text-black text-end">
             $ {{ detailBook?.price }}
           </h2>
         </div>
@@ -55,7 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { Book } from "~/types/Book";
+import type { Book } from '~/types/Book';
 const route = useRoute();
 const id = Number(route.params._id);
 
@@ -64,7 +68,7 @@ const isAddingToBasket = ref(false);
 const isRemovingFromBasket = ref(false);
 
 const addToBasket = (e: any) => {
-  useShoppingCart("add", detailBook);
+  useShoppingCart('add', detailBook);
 
   setTimeout(() => {
     isAddingToBasket.value = false;
@@ -72,7 +76,7 @@ const addToBasket = (e: any) => {
 };
 
 const removeFromBasket = () => {
-  useShoppingCart("remove", detailBook);
+  useShoppingCart('remove', detailBook);
 
   setTimeout(() => {
     isRemovingFromBasket.value = false;
@@ -82,7 +86,7 @@ const removeFromBasket = () => {
 onMounted(() => {
   const bookList: Book[] | null =
     (useBookList().value.length > 0 && useBookList().value) ||
-    JSON.parse(localStorage.getItem("bookList") || "[]") ||
+    JSON.parse(localStorage.getItem('bookList') || '[]') ||
     null;
 
   if (!bookList) return;

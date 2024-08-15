@@ -28,11 +28,11 @@
   </form>
 </template>
 <script lang="ts" setup>
-import type { Book } from "~/types/Book";
+import type { Book } from '~/types/Book';
 
 const bookList = useBookList();
 const filteredBookList = useFilteredBookList();
-const searchText = ref<string>("");
+const searchText = ref<string>('');
 
 const handleFilteredBookList = computed(() => {
   let newArrData: Book[] = [];
