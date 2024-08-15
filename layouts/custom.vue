@@ -8,7 +8,12 @@
 
         <nav>
           <ul class="flex space-x-4">
-            <li><nuxt-link to="/basket">Basket</nuxt-link></li>
+            <li>
+              <nuxt-link to="/basket"
+                >Basket
+                <span class="color-blue"> {{ count }}</span>
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -24,6 +29,28 @@
   </div>
 </template>
 
-<script setup></script>
+<script lang="ts" setup>
+import type { Book } from "~/types/Book";
+
+const shoppingCartList = useShoppingCartList();
+
+const count = ref<number>(0);
+
+watch(
+  () => shoppingCartList.value,
+  (newValue: any) => {
+    let counter: number = 0;
+
+    newValue?.map((item: Book) => {
+      if (item.count) {
+        counter = counter + item.count;
+      }
+    });
+
+    count.value = counter;
+  },
+  { deep: true }
+);
+</script>
 
 <style scoped></style>

@@ -1,14 +1,21 @@
 import type { Book } from "~/types/Book";
 
-export const useShoppingCart = async (name: string, obj: Book) => {
+const setLocal = (list: Book[]) => {
+  localStorage.setItem("shoppingCartList", JSON.stringify(list));
+};
+
+export const useShoppingCart = async (name: string, obj?: Book) => {
   const shoppingCartList = useShoppingCartList();
+  console.log(shoppingCartList);
+
+  if (name === "clear") {
+    shoppingCartList.value = [];
+  }
 
   if (name === "add") {
     const findIndexBook = shoppingCartList.value.findIndex(
       (item: Book) => item?.id === obj?.id
     );
-
-    console.log(findIndexBook);
 
     if (findIndexBook > -1) {
       shoppingCartList.value.splice(findIndexBook, 1, {
@@ -22,7 +29,7 @@ export const useShoppingCart = async (name: string, obj: Book) => {
 
   if (name === "remove") {
     const findIndexBook = shoppingCartList.value.findIndex(
-      (item: Book) => item.id === obj.id
+      (item: Book) => item.id === obj?.id
     );
 
     if (findIndexBook > -1) {
@@ -36,4 +43,6 @@ export const useShoppingCart = async (name: string, obj: Book) => {
       }
     }
   }
+
+  setLocal(shoppingCartList.value);
 };

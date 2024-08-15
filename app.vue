@@ -9,12 +9,15 @@
 <script lang="ts" setup>
 import type { Book } from "./types/Book";
 
-// onMounted(() => {
-//   const localBookList: Book[] | null = localStorage.getItem("bookList")
-//     ? JSON.stringify(localStorage.getItem("bookList"))
-//     : null;
-//   if (localBookList) {
-//     useBookList().value = localBookList;
-//   }
-// });
+const shoppingCartList = useShoppingCartList();
+
+onMounted(() => {
+  const localList: Book[] | null = localStorage.getItem("shoppingCartList")
+    ? JSON.parse(localStorage.getItem("shoppingCartList") || "[]")
+    : null;
+
+  if (localList) {
+    shoppingCartList.value = localList;
+  }
+});
 </script>
