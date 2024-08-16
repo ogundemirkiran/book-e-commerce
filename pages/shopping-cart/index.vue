@@ -17,7 +17,7 @@
           <span
             v-if="shoppingCartList?.length > 0"
             @click="removeAllShoppingCart"
-            class="text-red-500 font-medium underline text-xs"
+            class="text-red-500 font-medium underline text-xs cursor-pointer"
           >
             Clear Shopping Cart
           </span>
