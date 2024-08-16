@@ -50,14 +50,20 @@ To get started with the development and deployment of this application, follow t
 
         npm install
 
-3.  **Run the Development Server**:
+3.  **env**:
+
+    open .env file in home directory and add these
+
+        API_BASE_URL=https://dev-test.360y.co
+
+4.  **Run the Development Server**:
 
         npm run dev
 
-Open your browser and navigate to http://localhost:3000 to view the application in development mode.
+    Open your browser and navigate to http://localhost:3000 to view the application in development mode.
 
-3.  **Build the Application for Production:**:
+5.  **Build the Application for Production:**:
 
         npm run build
 
-This command generates the production-ready build files, which can be deployed to a server.
+    This command generates the production-ready build files, which can be deployed to a server.
