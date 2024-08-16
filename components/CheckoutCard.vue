@@ -20,95 +20,55 @@
           >$ {{ totalPrice.toFixed(2) }}</span
         >
       </div>
-    </div>
-
-    <!--NOT: Form -->
-    <form @submit.prevent="handleSubmit">
-      <div class="mb-4">
-        <label
-          for="firstName"
-          class="block text-gray-700 font-semibold mb-2 text-sm sm:text-md"
-          >Name:</label
-        >
-        <input
-          id="firstName"
-          v-model="firstName"
-          type="text"
-          class="w-full p-2 border border-gray-300 rounded text-sm sm:text-md"
-          autocomplete="off"
-        />
-      </div>
-      <div class="mb-4">
-        <label
-          for="lastName"
-          class="block text-gray-700 font-semibold mb-2 text-sm sm:text-md"
-          >Surname:</label
-        >
-        <input
-          id="lastName"
-          v-model="lastName"
-          type="text"
-          class="w-full p-2 border border-gray-300 rounded text-sm sm:text-md"
-          autocomplete="off"
-        />
-      </div>
-      <div class="mb-4 flex items-center">
-        <input
-          id="kvkk"
-          v-model="kvkkAccepted"
-          type="checkbox"
-          class="mr-2"
-          autocomplete="off"
-        />
-        <label for="kvkk" class="text-gray-700 text-sm sm:text-md"
-          >I accept KVKK</label
-        >
-      </div>
 
       <!-- NOT: Buy -->
-      <button
-        type="submit"
-        :disabled="!isFormValid"
-        class="w-full py-2 px-4 font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded disabled:opacity-50"
-      >
-        Buy
-      </button>
-    </form>
+      <div class="mt-5">
+        <button
+          @click="openModal"
+          type="submit"
+          :class="{ 'm-auto': shoppingCartList?.length === 0 }"
+          class="w-full py-2 px-4 font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded disabled:opacity-50"
+          :disabled="shoppingCartList.length === 0"
+        >
+          Buy
+        </button>
+      </div>
+
+      <!-- NOT: Modal -->
+      <div>
+        <Modal
+          :isOpen="isModalOpen"
+          title="Register Form"
+          @update:isOpen="isModalOpen = $event"
+          @decline="handleDecline"
+          :showFooter="false"
+        >
+          <template #userForm>
+            <SignUpForm />
+          </template>
+        </Modal>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Book } from '~/types/Book';
 
-const router = useRouter();
+// Not: Modal Actions
+const isModalOpen = ref(false);
+const openModal = () => {
+  isModalOpen.value = true;
+};
+const handleDecline = () => {
+  console.log('Modal closed without submitting.');
+};
+
+// Not: Cart Actions
 const shoppingCartList = useShoppingCartList();
 
 let totalQuantity = ref<number>(0);
 let totalPrice = ref<number>(0);
-
-// NOT: Form state
-const firstName = ref('');
-const lastName = ref('');
-const kvkkAccepted = ref(false);
-
-// Not: Form validate
-const isFormValid = computed(() => {
-  return (
-    firstName.value.trim() !== '' &&
-    lastName.value.trim() !== '' &&
-    kvkkAccepted.value
-  );
-});
-
-// NOT: Send form
-const handleSubmit = () => {
-  if (isFormValid.value) {
-    useShoppingCart('clear');
-    router.push('/completed');
-  } else {
-    alert('The form is not valid.');
-  }
-};
 
 const totalCalculator = (value: any) => {
   let counter: number = 0;

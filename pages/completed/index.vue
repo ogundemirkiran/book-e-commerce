@@ -9,7 +9,7 @@
     />
 
     <h5
-      class="mt-2 text-xl sm:text-4xl font-semibold tracking-tight text-green-600"
+      class="mt-2 text-xl sm:text-2xl font-semibold tracking-tight text-green-600"
     >
       Completed Successfully
     </h5>
