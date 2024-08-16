@@ -4,9 +4,10 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
       <!-- NOT: İmage -->
       <div>
-        <img
+        <nuxt-img
+          :key="detailBook.id"
           class="rounded-t-lg m-auto h-[400] sm:h-[600px]"
-          :src="detailBook?.coverImageUrl"
+          :src="detailBook.coverImageUrl"
           :alt="detailBook?.title"
         />
       </div>
@@ -97,7 +98,20 @@ const removeFromBasket = () => {
   }, 500);
 };
 
-onMounted(() => {
+const checkImage = (url: string) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = url;
+    img.onload = () => {
+      resolve(true);
+    };
+    img.onerror = () => {
+      resolve(false);
+    };
+  });
+};
+
+onMounted(async () => {
   const bookList: Book[] | null =
     (useBookList().value.length > 0 && useBookList().value) ||
     JSON.parse(localStorage.getItem('bookList') || '[]') ||
@@ -106,6 +120,15 @@ onMounted(() => {
   if (!bookList) return;
 
   const findBook = bookList?.find((item: Book) => item.id === id);
-  detailBook.value = findBook;
+
+  if (!findBook) return;
+
+  // NOT : Image validation
+  const isTest = await checkImage(findBook.coverImageUrl);
+
+  detailBook.value = {
+    ...findBook,
+    coverImageUrl: isTest ? findBook?.coverImageUrl : '/dummy-image.jpg'
+  };
 });
 </script>

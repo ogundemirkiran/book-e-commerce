@@ -20,6 +20,7 @@
     "vue": "latest"
   },
   "devDependencies": {
+    "@nuxt/image": "^1.7.0",
     "@nuxt/typescript-runtime": "^3.0.2",
     "@types/node": "^22.2.0",
     "@typescript-eslint/eslint-plugin": "^8.1.0",

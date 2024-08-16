@@ -3,7 +3,6 @@
     <NuxtLayout name="custom">
       <NuxtLoadingIndicator color="#0000ff" height="5" />
       <NuxtPage />
-      <NuxtSnackbar />
     </NuxtLayout>
   </div>
 </template>
@@ -30,7 +29,7 @@ useHead({
       content:
         'Find your next great read with our collection of books across various genres. Shop now at Your Store Name.'
     },
-    { property: 'og:url', content: 'https://localhost:3000' },
+    { property: 'og:url', content: 'https://book-e-commerce-phi.vercel.app/' },
     { name: 'twitter:title', content: 'Online Book Store | Buy Books Online' },
     {
       name: 'twitter:description',
@@ -41,7 +40,7 @@ useHead({
   ],
   link: [
     { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' },
-    { rel: 'canonical', href: 'https://localhost:3000' }
+    { rel: 'canonical', href: 'https://book-e-commerce-phi.vercel.app/' }
   ]
 });
 

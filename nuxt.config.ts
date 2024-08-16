@@ -25,12 +25,12 @@ export default defineNuxtConfig({
     shim: false
   },
 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sitemap'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxt/image'],
   css: ['@/assets/styles/main.css'],
 
   buildModules: ['@nuxtjs/tailwindcss', '@nuxt/typescript-build'],
   sitemap: {
-    hostname: 'http://localhost:3000/',
+    hostname: 'https://book-e-commerce-phi.vercel.app/',
     gzip: true,
     routes: ['/', '/shopping-cart', '/book/_id']
   }

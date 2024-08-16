@@ -2,4 +2,4 @@ User-agent: *
 Disallow: 
 Allow: /
 
-Sitemap: http://localhost:3000/sitemap.xml
+Sitemap: https://book-e-commerce-phi.vercel.app/sitemap.xml

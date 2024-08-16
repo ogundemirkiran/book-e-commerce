@@ -79,6 +79,7 @@
 <script setup lang="ts">
 import type { Book } from '~/types/Book';
 
+const router = useRouter();
 const shoppingCartList = useShoppingCartList();
 
 let totalQuantity = ref<number>(0);
@@ -120,7 +121,8 @@ const isFormValid = computed(() => {
 // NOT: Send form
 const handleSubmit = () => {
   if (isFormValid.value) {
-    alert('Successful');
+    useShoppingCart('clear');
+    router.push('/completed');
   } else {
     alert('The form is not valid.');
   }

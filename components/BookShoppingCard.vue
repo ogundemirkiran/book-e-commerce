@@ -5,9 +5,10 @@
     <!-- NOT: Title -->
     <div class="flex">
       <nuxt-link :to="`/books/${book.id}`">
-        <img
+        <nuxt-img
+          :key="book.id"
           class="object-cover w-16 h-16 rounded"
-          :src="book.coverImageUrl"
+          :src="isImage ? book.coverImageUrl : 'dummy-image.jpg'"
           :alt="book.title"
         />
       </nuxt-link>
@@ -65,4 +66,17 @@ const addToBasket = (book: Book) => {
 const removeFromBasket = (book: Book) => {
   useShoppingCart('remove', props.book);
 };
+
+const isImage = ref<boolean>(false);
+
+onBeforeMount(() => {
+  const img = new Image();
+  img.src = props.book.coverImageUrl;
+  img.onload = () => {
+    isImage.value = true;
+  };
+  img.onerror = () => {
+    isImage.value = false;
+  };
+});
 </script>

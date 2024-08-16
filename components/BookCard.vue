@@ -4,9 +4,10 @@
   >
     <!-- NOT: İmage -->
     <nuxt-link :to="`/books/${book.id}`" class="cursor-pointer">
-      <img
+      <nuxt-img
+        :key="book.id"
         class="p-5 rounded-t-lg h-[400px] m-auto"
-        :src="book.coverImageUrl"
+        :src="isImage ? book.coverImageUrl : 'dummy-image.jpg'"
         :alt="book.title"
       />
     </nuxt-link>
@@ -57,6 +58,19 @@ const props = defineProps<{
 
 const isAddingToBasket = ref(false);
 const isRemovingFromBasket = ref(false);
+
+const isImage = ref<boolean>(false);
+
+onBeforeMount(() => {
+  const img = new Image();
+  img.src = props.book.coverImageUrl;
+  img.onload = () => {
+    isImage.value = true;
+  };
+  img.onerror = () => {
+    isImage.value = false;
+  };
+});
 
 const addToBasket = (e: any) => {
   useShoppingCart('add', props.book);

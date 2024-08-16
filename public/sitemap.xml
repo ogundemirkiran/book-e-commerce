@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://localhost:3000/</loc>
+    <loc>https://book-e-commerce-phi.vercel.app/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost:3000/shopping-cart</loc>
+    <loc>https://book-e-commerce-phi.vercel.app/shopping-cart</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://localhost:3000/books/:id</loc>
+    <loc>https://book-e-commerce-phi.vercel.app/books/:id</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://book-e-commerce-phi.vercel.app/completed</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
