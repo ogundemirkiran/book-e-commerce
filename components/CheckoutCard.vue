@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6 bg-white rounded-lg shadow-lg">
+  <div class="p-6 bg-white rounded-lg shadow-lg h-fit sticky top-20">
     <!-- NOT: Shopping cart -->
     <div class="mb-4">
       <h2 class="text-md sm:text-xl font-bold text-gray-900 mb-2">
@@ -13,9 +13,10 @@
           {{ totalQuantity }}
         </span>
       </div>
-      <div class="flex justify-between">
+      <hr />
+      <div class="mt-3 flex justify-between">
         <span class="text-gray-700 text-sm sm:text-md">Total Amount:</span>
-        <span class="font-semibold text-gray-900 text-sm sm:text-md"
+        <span class="font-semibold text-gray-900 text-lg sm:text-xl"
           >$ {{ totalPrice.toFixed(2) }}</span
         >
       </div>
@@ -85,25 +86,6 @@ const shoppingCartList = useShoppingCartList();
 let totalQuantity = ref<number>(0);
 let totalPrice = ref<number>(0);
 
-watch(
-  () => shoppingCartList.value,
-  (newValue: any) => {
-    let counter: number = 0;
-    let price: number = 0;
-
-    newValue?.map((item: Book) => {
-      if (item.count) {
-        counter = counter + item.count;
-        price = price + item.price * item.count;
-      }
-    });
-
-    totalQuantity.value = counter;
-    totalPrice.value = price;
-  },
-  { deep: true }
-);
-
 // NOT: Form state
 const firstName = ref('');
 const lastName = ref('');
@@ -127,6 +109,33 @@ const handleSubmit = () => {
     alert('The form is not valid.');
   }
 };
+
+const totalCalculator = (value: any) => {
+  let counter: number = 0;
+  let price: number = 0;
+
+  value?.map((item: Book) => {
+    if (item.count) {
+      counter = counter + item.count;
+      price = price + item.price * item.count;
+    }
+  });
+
+  totalQuantity.value = counter;
+  totalPrice.value = price;
+};
+
+watch(
+  () => shoppingCartList.value,
+  (newValue: any) => {
+    totalCalculator(newValue);
+  },
+  { deep: true }
+);
+
+onMounted(() => {
+  totalCalculator(shoppingCartList.value);
+});
 </script>
 
 <style scoped></style>

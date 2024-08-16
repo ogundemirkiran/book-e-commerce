@@ -34,7 +34,7 @@
       <SearchInput v-if="isShowSearchBar" class="w-full block sm:hidden" />
     </header>
 
-    <main class="flex-1 container mx-auto p-6">
+    <main class="flex-1 container mx-auto px-0 py-6">
       <NuxtPage />
     </main>
 
@@ -52,6 +52,10 @@ const route = useRoute();
 const shoppingCartList = useShoppingCartList();
 const count = ref<number>(0);
 const isShowSearchBar = ref<boolean>(false);
+
+onMounted(() => {
+  isShowSearchBar.value = route.path === '/';
+});
 
 // NOT: Route watch
 watch(

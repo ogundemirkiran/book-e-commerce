@@ -3,7 +3,7 @@
   <div v-else>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-0">
       <!-- NOT: İmage -->
-      <div>
+      <div class="bg-white p-5">
         <nuxt-img
           :key="detailBook.id"
           class="rounded-t-lg m-auto h-[400] sm:h-[600px]"
@@ -34,24 +34,18 @@
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum.
           </p>
-          <h2 class="mb-5 text-xl lg:text-4xl font-bold text-black text-end">
+          <h2 class="mb-5 text-xl lg:text-4xl font-bold text-black">
             $ {{ detailBook?.price }}
           </h2>
         </div>
-        <div class="flex justify-end items-center">
+        <div>
           <LoadingButton
             :isLoading="isAddingToBasket"
-            buttonClass="text-xs text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2"
+            :isOk="isAddOk"
+            buttonClass=" sm:mx-5 w-full text-xs justify-center text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2"
             @click="addToBasket"
           >
             Add to Cart
-          </LoadingButton>
-          <LoadingButton
-            :isLoading="isRemovingFromBasket"
-            buttonClass="text-xs text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2"
-            @click="removeFromBasket"
-          >
-            Remove from Cart
           </LoadingButton>
         </div>
       </div>
@@ -80,22 +74,20 @@ const id = Number(route.params._id);
 
 const detailBook = ref<Book | null>(null);
 const isAddingToBasket = ref(false);
-const isRemovingFromBasket = ref(false);
+const isAddOk = ref(false);
 
 const addToBasket = (e: any) => {
-  useShoppingCart('add', detailBook);
+  isAddingToBasket.value = true;
+  useShoppingCart('add', detailBook.value);
 
   setTimeout(() => {
     isAddingToBasket.value = false;
+    isAddOk.value = true;
   }, 500);
-};
-
-const removeFromBasket = () => {
-  useShoppingCart('remove', detailBook);
 
   setTimeout(() => {
-    isRemovingFromBasket.value = false;
-  }, 500);
+    isAddOk.value = false;
+  }, 1000);
 };
 
 const checkImage = (url: string) => {

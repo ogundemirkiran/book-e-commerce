@@ -29,22 +29,14 @@
       </div>
 
       <!-- NOT: Actions -->
-      <div class="flex items-center justify-end mt-3">
-        <LoadingButton
-          :isLoading="isAddingToBasket"
-          buttonClass="text-xs text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2"
-          @click="addToBasket"
-        >
-          Add to Cart
-        </LoadingButton>
-        <LoadingButton
-          :isLoading="isRemovingFromBasket"
-          buttonClass="text-xs text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 shadow-lg shadow-green-500/50 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2"
-          @click="removeFromBasket"
-        >
-          Remove from Cart
-        </LoadingButton>
-      </div>
+      <LoadingButton
+        :isLoading="isAddingToBasket"
+        :isOk="isAddOk"
+        buttonClass="w-full mt-2 mb-2 justify-center text-xs text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 shadow-lg shadow-purple-500/50 font-medium rounded-lg px-5 py-2.5  "
+        @click="addToBasket"
+      >
+        Add to Cart
+      </LoadingButton>
     </div>
   </div>
 </template>
@@ -57,7 +49,7 @@ const props = defineProps<{
 }>();
 
 const isAddingToBasket = ref(false);
-const isRemovingFromBasket = ref(false);
+const isAddOk = ref(false);
 
 const isImage = ref<boolean>(false);
 
@@ -73,18 +65,16 @@ onBeforeMount(() => {
 });
 
 const addToBasket = (e: any) => {
+  isAddingToBasket.value = true;
   useShoppingCart('add', props.book);
 
   setTimeout(() => {
     isAddingToBasket.value = false;
+    isAddOk.value = true;
   }, 500);
-};
-
-const removeFromBasket = () => {
-  useShoppingCart('remove', props.book);
 
   setTimeout(() => {
-    isRemovingFromBasket.value = false;
-  }, 500);
+    isAddOk.value = false;
+  }, 1000);
 };
 </script>

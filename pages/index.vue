@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="filteredBookList.length > 0"
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4 gap-4 justify-center"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xxl:grid-cols-5 gap-3 justify-center"
     >
       <div v-for="book in filteredBookList" :key="book.id">
         <BookCard :book="book" />
