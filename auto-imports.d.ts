@@ -20,7 +20,6 @@ declare global {
   const isReactive: (typeof import('vue'))['isReactive'];
   const isReadonly: (typeof import('vue'))['isReadonly'];
   const isRef: (typeof import('vue'))['isRef'];
-
   const markRaw: (typeof import('vue'))['markRaw'];
   const nextTick: (typeof import('vue'))['nextTick'];
   const onActivated: (typeof import('vue'))['onActivated'];
