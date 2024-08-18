@@ -25,7 +25,12 @@ export default defineNuxtConfig({
     shim: false
   },
 
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/sitemap', '@nuxt/image'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/sitemap',
+    '@nuxt/image',
+    '@nuxt/test-utils/module'
+  ],
   css: ['@/assets/styles/main.css'],
 
   buildModules: ['@nuxtjs/tailwindcss', '@nuxt/typescript-build'],
